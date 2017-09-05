@@ -111,17 +111,7 @@ var ics = function() {
             ext = (typeof ext !== 'undefined') ? ext : '.ics';
             filename = (typeof filename !== 'undefined') ? filename : 'calendar';
             var calendar = calendarStart + SEPARATOR + calendarEvents.join(SEPARATOR) + calendarEnd;
-
-            var blob;
-            if (navigator.userAgent.indexOf('MSIE 10') === -1) { // chrome or firefox
-                blob = new Blob([calendar]);
-            } else { // ie
-                var bb = new BlobBuilder();
-                bb.append(calendar);
-                blob = bb.getBlob('text/x-vCalendar;charset=' + document.characterSet);
-            }
-            saveAs(blob, filename + ext);
-            return calendar;
+            window.open( "data:text/calendar;charset=utf8," + escape(calendar));
         }
     };
 };
